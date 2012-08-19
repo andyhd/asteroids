@@ -13,4 +13,17 @@ Why are the first three letters of ASTeroids capitalized?
 
 It's a pun on Abstract Syntax Tree - which Lisp essentially is. Sorry.
 
+How do I play it?
+-----------------
+
+I'm afraid you'll need to install [Steel Bank Common Lisp][2] and [the Quicklisp package tool][3], which is pretty easy, and then set up [Lispbuilder-SDL][4], which is not.
+I will write about how I got everything set up on OSX Lion soon.
+
+Assuming you have everything installed, you can simply start SBCL and `(load "asteroids.lisp")` and then call `(asteroids:main)` from the REPL.
+
+The game is mouse controlled.
+
 [1]: http://notimetoplay.org/our-games/square-shooter/
+[2]: http://www.sbcl.org/
+[3]: http://www.quicklisp.org/
+[4]: http://code.google.com/p/lispbuilder/wiki/LispbuilderSDL
