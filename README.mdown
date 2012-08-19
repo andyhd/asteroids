@@ -1,0 +1,16 @@
+ASTeroids
+=========
+
+A simple Asteroids clone, inspired by [Square Shooter by No Time To Play][1], but written in Common Lisp with Lispbuilder-SDL.
+
+Why?
+----
+
+I'm learning Common Lisp this year, and it seemed like a fun project. It was.
+
+Why are the first three letters of ASTeroids capitalized?
+---------------------------------------------------------
+
+It's a pun on Abstract Syntax Tree - which Lisp essentially is. Sorry.
+
+[1]: http://notimetoplay.org/our-games/square-shooter/
