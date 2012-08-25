@@ -288,9 +288,9 @@
                  :color *cyan*)
     (draw-polygon (loop for i from 0 to 11
                     collect (radial-point-from coords
-                                               (round (* radius (* (if (eq (mod i 2) 0)
+                                               (round (* radius (if (= (mod i 2) 0)
                                                                        0.7
-                                                                       0.2))))
+                                                                       0.2)))
                                                (* i 30)))
                   :color *white*)))
 
