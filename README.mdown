@@ -1,12 +1,37 @@
 ASTeroids
 =========
 
-A simple Asteroids clone, inspired by [Square Shooter by No Time To Play][1], but written in Common Lisp with Lispbuilder-SDL.
+A simple Asteroids clone, inspired by [Square Shooter by No Time To Play][1],
+but written in Common Lisp with Lispbuilder-SDL.
 
 Why?
 ----
 
 I'm learning Common Lisp this year, and it seemed like a fun project. It was.
+
+**UPDATE**
+
+Wow, I made the front page of Hacker News!
+
+I read a few questions there and on /r/programming about why I did this, and it
+really was just a fun learning project, partly in response to an article I read
+about refactoring the original Python version.
+
+Thanks to everyone for the generally positive feedback!
+
+I wasn't trying to fit it into 600 LOC or trying to make a very clean or fast
+implementation.
+
+The code is quite un-Lispy because I'm only about 4 months into learning Lisp
+and this is a translation from a Python codebase, rather than starting from
+scratch. I also wanted to learn a bit of CLOS. I haven't really tried any
+macro programming yet.
+
+I did write it using Vim, because that's what I'm used to, and I haven't got
+into Emacs and Slime yet. It's difficult to switch, but I will give it a try.
+
+There aren't many inline comments, I'm not a fan of them. I prefer my code to
+be self documenting as far as possible.
 
 Why are the first three letters of ASTeroids capitalized?
 ---------------------------------------------------------
@@ -16,17 +41,39 @@ It's a pun on Abstract Syntax Tree - which Lisp essentially is. Sorry.
 How do I play it?
 -----------------
 
-I'm afraid you'll need to install [Steel Bank Common Lisp][2] and [the Quicklisp package tool][3], which is pretty easy, and then set up [Lispbuilder-SDL][4], which is not.
-I will write about how I got everything set up on OSX Lion soon.
+I'm afraid you'll need to install [Steel Bank Common Lisp][2] and [the
+Quicklisp package tool][3], which is pretty easy, and then set up
+[Lispbuilder-SDL][4], which is not.  I will write about how I got everything
+set up on OSX Lion soon.
 
-Assuming you have everything installed, you can simply start SBCL and `(load "asteroids.lisp")` and then call `(asteroids:main)` from the REPL.
+Assuming you have everything installed, you can simply start SBCL and `(load
+"asteroids.lisp")` and then call `(asteroids:main)` from the REPL.
 
 The game is mouse controlled.
+
+**UPDATE**
+
+Sorry for providing such brief instructions, I really hadn't expected anyone
+to give this a second look.
+
+The problems I had with Lispbuilder-SDL were installing SDL on OSX and getting
+Lispbuilder-SDL to compile against it. Quicklisp chokes on cocoahelper and you
+have to compile it manually. I found I had to compile SDL manually too.
+
+The code includes Quicklisp calls to install Lispbuilder-SDL and
+Lispbuilder-SDL-GFX, so you shouldn't have to install them manually (except for
+compiling cocoahelper on OSX).
+
+SBCL isn't a dependency - the game loads and runs fine in Clozure CL on OSX. I
+just knew SBCL worked, because that's what I wrote it with.  I have tried to
+run this on CLISP, but it wants me to recompile with CFFI enabled, which I
+haven't tried yet.
 
 What does it look like?
 -----------------------
 
-A bit rubbish, really. Next steps are learning some OpenGL to make it a bit prettier.
+A bit rubbish, really. Next steps are learning some OpenGL to make it a bit
+prettier.
 
 ![ASTeroids screenshot](https://dl.dropbox.com/u/1986317/ASTeroids.png)
 
