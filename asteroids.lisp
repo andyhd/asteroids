@@ -178,6 +178,7 @@
          (not (done timer)))))
 
 (defmethod update ((asteroid asteroid) time-delta (world world))
+  (declare (ignore time-delta))
   (when (not (frozen-p world))
     (incf (facing asteroid) (rotation asteroid))
     (call-next-method)))
