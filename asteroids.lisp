@@ -221,16 +221,16 @@
   (remove-from-world world powerup)
   (add-score world powerup))
 
-(defmethod shield-active-p ((ship ship))
-  (let ((shield-timer (gethash 'shield (timers ship) nil)))
-    (and shield-timer
-         (not (done shield-timer)))))
+(defmethod powerup-active-p ((ship ship) powerup)
+  (let ((timer (gethash powerup (timers ship) nil)))
+    (and timer
+         (not (done timer)))))
 
 (defmethod add-seconds ((timer timer) seconds)
   (incf (remaining timer) seconds))
 
 (defmethod add-shield ((ship ship) &key (seconds 0))
-  (if (shield-active-p ship)
+  (if (powerup-active-p ship 'shield)
     (add-seconds (gethash 'shield (timers ship)) seconds)
     (setf (gethash 'shield (timers ship))
           (make-instance 'timer :seconds seconds))))
@@ -250,13 +250,8 @@
                     ,(radial-point-from coords (round (* radius 0.8)) 135))
                   :color *white*)))
 
-(defmethod super-bullets-active-p ((ship ship))
-  (let ((bullet-timer (gethash 'super-bullets (timers ship) nil)))
-    (and bullet-timer
-        (not (done bullet-timer)))))
-
 (defmethod add-super-bullets ((ship ship) &key (seconds 0))
-  (if (super-bullets-active-p ship)
+  (if (powerup-active-p ship 'super-bullets)
     (add-seconds (gethash 'super-bullets (timers ship)) seconds)
     (setf (gethash 'super-bullets (timers ship))
           (make-instance 'timer :seconds seconds))))
@@ -299,7 +294,7 @@
   (values mob))
 
 (defmethod collide :before ((ship ship) (asteroid asteroid) (world world))
-  (unless (shield-active-p ship)
+  (unless (powerup-active-p ship 'shield)
     (remove-from-world world ship)
     (add-to-world world (make-instance 'explosion :pos (pos ship)))
     (decf (lives world))))
@@ -312,6 +307,7 @@
     (when (and (not (eq ship mob))
                (intersects-p ship mob))
       (collide ship mob world))
+    ;; if a collision destroyed the ship, stop checking for collisions
     (when (not (in-world-p world ship))
       (return ship))))
 
@@ -358,13 +354,13 @@
          (tail (radial-point-from coords (round (* radius 0.5)) (+ facing 180))))
     (draw-polygon (list nose left tail right)
                   :color *white*)
-    (when (shield-active-p ship)
+    (when (powerup-active-p ship 'shield)
           (draw-circle coords
                       (round (+ radius (random 3)))
                       :color *green*))))
 
 (defmethod super-p ((bullet bullet))
-  (super-bullets-active-p (ship bullet)))
+  (powerup-active-p (ship bullet) 'super-bullets))
 
 (defmethod collide :before ((bullet bullet) (asteroid asteroid) (world world))
   (remove-from-world world asteroid)
