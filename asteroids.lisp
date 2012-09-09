@@ -207,11 +207,10 @@
            *powerup-max-age*)
     (remove-from-world world powerup)))
 
-(defmethod add-score ((world world) score)
-  (when (numberp score)
-    (setf (high-score world)
-          (max (incf (score world) score)
-               (high-score world)))))
+(defmethod add-score ((world world) (score number))
+  (setf (high-score world)
+        (max (incf (score world) score)
+             (high-score world))))
 
 (defmethod add-score ((world world) (powerup powerup))
   (add-score world (* (level world) 10)))
