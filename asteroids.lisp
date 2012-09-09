@@ -114,7 +114,7 @@
 (defmethod collide ((mob mob) (other mob) (world world)) t)
 
 (defmethod map-coords ((mob mob))
-  (multiple-value-bind (x y) (values-list (pos mob))
+  (destructuring-bind (x y) (pos mob)
     (point :x (round (* x *map-width*))
            :y (round (* y *map-height*)))))
 
@@ -394,7 +394,7 @@
         (vector-sum (pos bullet)
                     (vector-scale (velocity bullet)
                                   time-delta)))
-  (multiple-value-bind (x y) (values-list (pos bullet))
+  (destructuring-bind (x y) (pos bullet)
     (when (or (not (< 0 x *map-width*))
               (not (< 0 y *map-height*)))
       (remove-from-world world bullet)))
@@ -526,7 +526,7 @@
                                      :color *green*)))))
 
 (defun calc-angle (a b)
-  (multiple-value-bind (x y) (values-list (vector-subtract b a))
+  (destructuring-bind (x y) (vector-subtract b a)
     (rad->deg (atan x y))))
 
 (defun main ()
