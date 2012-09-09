@@ -57,9 +57,8 @@
          :y (+ (* radius (cos (deg->rad angle))) (y p))))
 
 (defun get-ticks ()
-  (let ((ticks *ticks*))
-    (setf *ticks* (sdl-get-ticks))
-    (- *ticks* ticks)))
+  (let ((ticks (shiftf *ticks* (sdl-get-ticks))))
+    (* (- *ticks* ticks) 0.001)))
 
 ;;; represents an object on the game map
 (defclass mob ()
@@ -576,6 +575,6 @@
         (:idle ()
           (when (and (> (level world) 0)
                      (not paused))
-            (update-world world (* (get-ticks) 0.001)))
+            (update-world world (get-ticks)))
           (render-world world paused)
           (update-display))))))
