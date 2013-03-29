@@ -46,7 +46,7 @@ Quicklisp package tool][3], which is pretty easy.
 
 I've also tested with Clozure CL.
 
-I used [Homebrew][5] to install SDL and SDL_gfx on my Mac.
+I used [Homebrew][4] to install SDL and SDL_gfx on my Mac.
 
 Start SBCL and type the following at the REPL prompt:
 ```lisp
@@ -81,4 +81,4 @@ prettier.
 [1]: http://notimetoplay.org/our-games/square-shooter/
 [2]: http://www.sbcl.org/
 [3]: http://www.quicklisp.org/
-[4]: http://code.google.com/p/lispbuilder/wiki/LispbuilderSDL
+[4]: http://mxcl.github.com/homebrew/
