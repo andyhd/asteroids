@@ -41,33 +41,34 @@ It's a pun on Abstract Syntax Tree - which Lisp essentially is. Sorry.
 How do I play it?
 -----------------
 
-I'm afraid you'll need to install [Steel Bank Common Lisp][2] and [the
-Quicklisp package tool][3], which is pretty easy, and then set up
-[Lispbuilder-SDL][4], which is not.  I will write about how I got everything
-set up on OSX Lion soon.
+You'll need to install [Steel Bank Common Lisp][2] and [the
+Quicklisp package tool][3], which is pretty easy.
 
-Assuming you have everything installed, you can simply start SBCL and `(load
-"asteroids.lisp")` and then call `(asteroids:main)` from the REPL.
+I've also tested with Clozure CL.
+
+I used [Homebrew][5] to install SDL and SDL_gfx on my Mac.
+
+Start SBCL and type the following at the REPL prompt:
+```lisp
+(sb-ext::set-floating-point-modes :traps nil)
+(load "asteroids.lisp")
+```
+
+Quicklisp will then install some dependencies. When Quicklisp tries to install Lispbuilder-SDL, it may fail
+and complain about CocoaBuilder. You have to manually compile it:
+```sh
+cd ~/quicklisp/dists/quicklisp/software/lispbuilder-20130312-svn/lispbuilder-sdl/cocoahelper
+make
+```
+Then retry loading asteroids.lisp
+
+Once that is done, you can start the game from the REPL with:
+```lisp
+(asteroids:main)
+```
 
 The game is mouse controlled.
 
-**UPDATE**
-
-Sorry for providing such brief instructions, I really hadn't expected anyone
-to give this a second look.
-
-The problems I had with Lispbuilder-SDL were installing SDL on OSX and getting
-Lispbuilder-SDL to compile against it. Quicklisp chokes on cocoahelper and you
-have to compile it manually. I found I had to compile SDL manually too.
-
-The code includes Quicklisp calls to install Lispbuilder-SDL and
-Lispbuilder-SDL-GFX, so you shouldn't have to install them manually (except for
-compiling cocoahelper on OSX).
-
-SBCL isn't a dependency - the game loads and runs fine in Clozure CL on OSX. I
-just knew SBCL worked, because that's what I wrote it with.  I have tried to
-run this on CLISP, but it wants me to recompile with CFFI enabled, which I
-haven't tried yet.
 
 What does it look like?
 -----------------------
