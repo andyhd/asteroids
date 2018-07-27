@@ -76,7 +76,7 @@ What does it look like?
 A bit rubbish, really. Next steps are learning some OpenGL to make it a bit
 prettier.
 
-![ASTeroids screenshot](https://dl.dropbox.com/u/1986317/ASTeroids.png)
+![ASTeroids screenshot](https://www.dropbox.com/s/1tr9m8lvb3lhn3u/ASTeroids.png?dl=0)
 
 [1]: http://notimetoplay.org/our-games/square-shooter/
 [2]: http://www.sbcl.org/
